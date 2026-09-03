@@ -71,7 +71,41 @@ Seed-OSS (4.3) / Fable-Fusion (0.9) / Muse-Glimmer (0.6) / LFM2 (1.1) / Devstral
 and the ON-lane of every thinking model (2.0-0.1 tok/s — see matrix). All 4/4 —
 fine for batch, too slow for interactive chat.
 
+
+## Reproducible harness
+
+The exact test harness lives in [`harness/real_task_harness.py`](harness/real_task_harness.py)
+— task prompts, grading rules, and both engines' reasoning-off knobs, ready to run:
+
+```bash
+# LM Studio (thinking off)
+python3 harness/real_task_harness.py \
+  --url http://127.0.0.1:1234/v1/chat/completions \
+  --model <model-id> --engine lmstudio --thinking off --max-tokens 16000
+
+# oMLX (thinking off, Bearer token from env)
+OMLX_API_KEY=... python3 harness/real_task_harness.py \
+  --url http://127.0.0.1:8002/v1/chat/completions \
+  --model <model-id> --engine omlx --thinking off --max-tokens 16000
+```
+
+**Two hard-won lessons baked into the harness:**
+
+1. **Pick the engine explicitly — never sniff it from the URL.** A URL like
+   `http://127.0.0.1:1234/v1/chat/completions` does *not* end in `:1234`, so a
+   `url.endswith("1234")` auto-detect silently sends the *wrong* reasoning-off
+   knob to the other engine, which ignores it — and you get "reasoning still on"
+   results that look like model failures. The initial version of this benchmark
+   contained exactly that bug; this is why the affected rows carry the `v2` flag
+   and were re-run after the fix.
+2. **Verify the reasoning-off knob is actually honored.** In every run, check the
+   thinking-token column: it should be ~0 when thinking is off. If a model still
+   burns thinking at its default context (e.g. 262K), re-load it with a sane
+   context (`lms load <model> -c 32768`) — the default context can change
+   reasoning-off behavior.
+
 ### Full detailed results — every model × thinking mode, per task
+ — every model × thinking mode, per task
 
 Columns: **QA/INV/SUM/EML** = grounded Q&A / invoice / summary / email. Each cell: ✅ pass or ❌ fail, wall-clock seconds, answer tokens (`a`), thinking tokens (`t`). `v2` = corrected re-run; `@N` = passes only at max_tokens=N. Total time = sum of 4 tasks; tok/s = answer tokens ÷ wall time (∞ = wall time < 2s, token counter stalling).
 
