@@ -1,0 +1,2958 @@
+[
+ {
+  "engine": "omlx",
+  "model": "Muse-Glimmer-30B-4bit",
+  "mode": "on",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 63.9,
+    "ans": 42,
+    "think": 157,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 129.6,
+    "ans": 34,
+    "think": 699,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 72.8,
+    "ans": 53,
+    "think": 356,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 31.4,
+    "ans": 27,
+    "think": 150,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "omlx",
+  "model": "Muse-Glimmer-30B-4bit",
+  "mode": "off",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 58.4,
+    "ans": 41,
+    "think": 138,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 108.2,
+    "ans": 36,
+    "think": 587,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 63.1,
+    "ans": 51,
+    "think": 297,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 41.0,
+    "ans": 24,
+    "think": 192,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "omlx",
+  "model": "Qwen3.8-27B-MTPLX-Optimized-Quality",
+  "mode": "off",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": false,
+    "why": "ERR:<urlopen error [Errno 61] Connection refused>",
+    "elapsed": 0,
+    "ans": 0,
+    "think": 0
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 49.7,
+    "ans": 59,
+    "think": 0,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 13.5,
+    "ans": 70,
+    "think": 0,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 10.0,
+    "ans": 52,
+    "think": 0,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "omlx",
+  "model": "gemma-4-12b-coder-fable5-composer2.5-4bit",
+  "mode": "on",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 16.2,
+    "ans": 6,
+    "think": 20,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 9.1,
+    "ans": 12,
+    "think": 54,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": false,
+    "why": "rubric-fail",
+    "elapsed": 13.3,
+    "ans": 23,
+    "think": 79,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 13.0,
+    "ans": 22,
+    "think": 81,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "omlx",
+  "model": "gemma-4-12b-coder-fable5-composer2.5-4bit",
+  "mode": "off",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 5.4,
+    "ans": 18,
+    "think": 0,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": false,
+    "why": "rubric-fail",
+    "elapsed": 2.7,
+    "ans": 19,
+    "think": 0,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": false,
+    "why": "rubric-fail",
+    "elapsed": 2.2,
+    "ans": 15,
+    "think": 0,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 2.3,
+    "ans": 17,
+    "think": 0,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "omlx",
+  "model": "grug-27b-oQ8e-fp16",
+  "mode": "on",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 47.6,
+    "ans": 18,
+    "think": 16,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 15.1,
+    "ans": 57,
+    "think": 32,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 14.2,
+    "ans": 73,
+    "think": 8,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 10.0,
+    "ans": 45,
+    "think": 13,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "omlx",
+  "model": "grug-27b-oQ8e-fp16",
+  "mode": "off",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 3.4,
+    "ans": 17,
+    "think": 0,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 11.0,
+    "ans": 64,
+    "think": 0,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 8.8,
+    "ans": 50,
+    "think": 0,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 7.4,
+    "ans": 42,
+    "think": 0,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "lms",
+  "model": "superqwen-agentworld-35b-a3b-abliterated",
+  "mode": "on",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 2.1,
+    "ans": 138,
+    "think": 0,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 2.1,
+    "ans": 178,
+    "think": 0,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 2.7,
+    "ans": 227,
+    "think": 0,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 1.7,
+    "ans": 133,
+    "think": 0,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "lms",
+  "model": "superqwen-agentworld-35b-a3b-abliterated",
+  "mode": "off",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 1.6,
+    "ans": 120,
+    "think": 0,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 2.1,
+    "ans": 166,
+    "think": 0,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 2.4,
+    "ans": 192,
+    "think": 0,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 1.8,
+    "ans": 143,
+    "think": 0,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "lms",
+  "model": "ornith-1.5-35b-a3b-uncensored-mlx",
+  "mode": "on",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 7.4,
+    "ans": 193,
+    "think": 402,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 15.1,
+    "ans": 192,
+    "think": 1057,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 5.5,
+    "ans": 215,
+    "think": 223,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 2.6,
+    "ans": 147,
+    "think": 70,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "lms",
+  "model": "ornith-1.5-35b-a3b-uncensored-mlx",
+  "mode": "off",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 6.0,
+    "ans": 212,
+    "think": 310,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 10.2,
+    "ans": 203,
+    "think": 686,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": false,
+    "why": "rubric-fail",
+    "elapsed": 3.9,
+    "ans": 184,
+    "think": 158,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 2.6,
+    "ans": 150,
+    "think": 70,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "lms",
+  "model": "qwen3.8-27b",
+  "mode": "on",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 11.1,
+    "ans": 53,
+    "think": 359,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 177.3,
+    "ans": 140,
+    "think": 4544,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 31.5,
+    "ans": 160,
+    "think": 794,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 30.8,
+    "ans": 142,
+    "think": 806,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "lms",
+  "model": "qwen3.8-27b-obliterated",
+  "mode": "on",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 11.9,
+    "ans": 48,
+    "think": 281,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 136.8,
+    "ans": 139,
+    "think": 2842,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 80.2,
+    "ans": 185,
+    "think": 2056,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 45.7,
+    "ans": 138,
+    "think": 1153,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "lms",
+  "model": "qwen3.8-27b-heretic-abliterated-uncensored",
+  "mode": "on",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 14.7,
+    "ans": 53,
+    "think": 375,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": false,
+    "why": "passes at max_tokens=6000",
+    "elapsed": 257.1,
+    "ans": 0,
+    "think": 5966,
+    "replaced": false,
+    "passed_at": 6000
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 72.0,
+    "ans": 192,
+    "think": 1862,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 43.3,
+    "ans": 145,
+    "think": 1144,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "lms",
+  "model": "google/gemma-4-26b-a4b-qat",
+  "mode": "on",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 5.7,
+    "ans": 44,
+    "think": 512,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 33.3,
+    "ans": 124,
+    "think": 3215,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 20.4,
+    "ans": 140,
+    "think": 1943,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 6.8,
+    "ans": 159,
+    "think": 573,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "lms",
+  "model": "poolside/laguna-s-2.1",
+  "mode": "on",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 3.0,
+    "ans": 130,
+    "think": 0,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 2.9,
+    "ans": 182,
+    "think": 0,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 3.8,
+    "ans": 229,
+    "think": 0,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 3.2,
+    "ans": 189,
+    "think": 0,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "lms",
+  "model": "poolside/laguna-s-2.1",
+  "mode": "off",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 2.0,
+    "ans": 130,
+    "think": 0,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 2.7,
+    "ans": 170,
+    "think": 0,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 4.1,
+    "ans": 263,
+    "think": 0,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 3.0,
+    "ans": 192,
+    "think": 0,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "lms",
+  "model": "minicpm5-1b-claude-opus-fable5-v2-thinking-heretic",
+  "mode": "on",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 2.2,
+    "ans": 161,
+    "think": 288,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": false,
+    "why": "rubric-fail",
+    "elapsed": 5.4,
+    "ans": 77,
+    "think": 1014,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": false,
+    "why": "rubric-fail",
+    "elapsed": 2.3,
+    "ans": 118,
+    "think": 336,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 1.4,
+    "ans": 82,
+    "think": 198,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "lms",
+  "model": "minicpm5-1b-claude-opus-fable5-v2-thinking-heretic",
+  "mode": "off",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 1.2,
+    "ans": 211,
+    "think": 36,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": false,
+    "why": "rubric-fail",
+    "elapsed": 3.6,
+    "ans": 123,
+    "think": 630,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": false,
+    "why": "rubric-fail",
+    "elapsed": 2.1,
+    "ans": 119,
+    "think": 296,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 1.2,
+    "ans": 77,
+    "think": 161,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "lms",
+  "model": "vibe-coding-claude-fable-5-mlx",
+  "mode": "on",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": false,
+    "why": "rubric-fail",
+    "elapsed": 1.4,
+    "ans": 69,
+    "think": 0,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 3.7,
+    "ans": 219,
+    "think": 0,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 3.4,
+    "ans": 200,
+    "think": 0,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 2.6,
+    "ans": 152,
+    "think": 0,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "lms",
+  "model": "vibe-coding-claude-fable-5-mlx",
+  "mode": "off",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": false,
+    "why": "rubric-fail",
+    "elapsed": 1.2,
+    "ans": 68,
+    "think": 0,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 4.0,
+    "ans": 232,
+    "think": 0,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 3.4,
+    "ans": 198,
+    "think": 0,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 2.6,
+    "ans": 151,
+    "think": 0,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "lms",
+  "model": "drk-coding-v1",
+  "mode": "on",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 11.3,
+    "ans": 47,
+    "think": 1072,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": false,
+    "why": "passes at max_tokens=8000",
+    "elapsed": 80.4,
+    "ans": 0,
+    "think": 6000,
+    "replaced": false,
+    "passed_at": 8000
+   },
+   "3_summary": {
+    "ok": false,
+    "why": "passes at max_tokens=6000",
+    "elapsed": 72.9,
+    "ans": 0,
+    "think": 6000,
+    "replaced": false,
+    "passed_at": 6000
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 22.8,
+    "ans": 116,
+    "think": 1626,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "lms",
+  "model": "mistralai/devstral-small-2507",
+  "mode": "on",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 7.9,
+    "ans": 154,
+    "think": 0,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": false,
+    "why": "rubric-fail",
+    "elapsed": 8.6,
+    "ans": 166,
+    "think": 0,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": false,
+    "why": "rubric-fail",
+    "elapsed": 8.0,
+    "ans": 150,
+    "think": 0,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 8.9,
+    "ans": 182,
+    "think": 0,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "lms",
+  "model": "mistralai/devstral-small-2507",
+  "mode": "off",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 7.3,
+    "ans": 154,
+    "think": 0,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 8.6,
+    "ans": 174,
+    "think": 0,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 10.6,
+    "ans": 209,
+    "think": 0,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 8.6,
+    "ans": 179,
+    "think": 0,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "lms",
+  "model": "google/gemma-4-12b",
+  "mode": "on",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 26.2,
+    "ans": 135,
+    "think": 769,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 61.9,
+    "ans": 144,
+    "think": 2034,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": false,
+    "why": "rubric-fail",
+    "elapsed": 91.0,
+    "ans": 166,
+    "think": 2916,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 23.6,
+    "ans": 155,
+    "think": 630,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "lms",
+  "model": "google/gemma-4-12b",
+  "mode": "off",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 23.2,
+    "ans": 127,
+    "think": 645,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 45.3,
+    "ans": 138,
+    "think": 1376,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": false,
+    "why": "rubric-fail",
+    "elapsed": 118.0,
+    "ans": 177,
+    "think": 3629,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 22.7,
+    "ans": 149,
+    "think": 613,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "lms",
+  "model": "grug-35b-qat",
+  "mode": "on",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 1.7,
+    "ans": 64,
+    "think": 63,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 3.6,
+    "ans": 199,
+    "think": 110,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": false,
+    "why": "rubric-fail",
+    "elapsed": 3.0,
+    "ans": 217,
+    "think": 24,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 2.1,
+    "ans": 116,
+    "think": 46,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "lms",
+  "model": "grug-35b-qat",
+  "mode": "off",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 1.5,
+    "ans": 65,
+    "think": 62,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 3.3,
+    "ans": 197,
+    "think": 107,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": false,
+    "why": "rubric-fail",
+    "elapsed": 2.5,
+    "ans": 193,
+    "think": 31,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 1.9,
+    "ans": 118,
+    "think": 50,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "lms",
+  "model": "huizimao-gpt-oss-20b-uncensored-hi-mlx",
+  "mode": "on",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 5.3,
+    "ans": 101,
+    "think": 0,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": false,
+    "why": "rubric-fail",
+    "elapsed": 6.8,
+    "ans": 134,
+    "think": 0,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 3.9,
+    "ans": 221,
+    "think": 0,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 7.5,
+    "ans": 118,
+    "think": 0,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "lms",
+  "model": "huizimao-gpt-oss-20b-uncensored-hi-mlx",
+  "mode": "off",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 5.6,
+    "ans": 179,
+    "think": 0,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 5.3,
+    "ans": 163,
+    "think": 0,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 4.1,
+    "ans": 238,
+    "think": 0,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 4.0,
+    "ans": 134,
+    "think": 0,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "lms",
+  "model": "gpt-oss-safeguard-20b-mlx",
+  "mode": "on",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": false,
+    "why": "rubric-fail",
+    "elapsed": 7.1,
+    "ans": 161,
+    "think": 0,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 7.4,
+    "ans": 193,
+    "think": 0,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 10.4,
+    "ans": 261,
+    "think": 0,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 2.0,
+    "ans": 144,
+    "think": 0,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "lms",
+  "model": "gpt-oss-safeguard-20b-mlx",
+  "mode": "off",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": false,
+    "why": "rubric-fail",
+    "elapsed": 4.3,
+    "ans": 111,
+    "think": 0,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 8.4,
+    "ans": 175,
+    "think": 0,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 7.9,
+    "ans": 218,
+    "think": 0,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 2.0,
+    "ans": 131,
+    "think": 0,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "lms",
+  "model": "magistral-small-2509-mlx",
+  "mode": "on",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 4.5,
+    "ans": 154,
+    "think": 0,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 4.2,
+    "ans": 140,
+    "think": 0,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 6.0,
+    "ans": 197,
+    "think": 0,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 4.3,
+    "ans": 150,
+    "think": 0,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "lms",
+  "model": "magistral-small-2509-mlx",
+  "mode": "off",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 4.3,
+    "ans": 154,
+    "think": 0,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 4.9,
+    "ans": 169,
+    "think": 0,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 6.4,
+    "ans": 223,
+    "think": 0,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 4.5,
+    "ans": 161,
+    "think": 0,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "lms",
+  "model": "prism-ml/bonsai-27b",
+  "mode": "on",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 35.4,
+    "ans": 66,
+    "think": 1460,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 82.0,
+    "ans": 182,
+    "think": 3321,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 62.3,
+    "ans": 171,
+    "think": 2316,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 34.9,
+    "ans": 145,
+    "think": 1255,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "lms",
+  "model": "zai-org/glm-4.7-flash",
+  "mode": "on",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 100.6,
+    "ans": 5139,
+    "think": 764,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 97.4,
+    "ans": 4668,
+    "think": 1022,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 96.7,
+    "ans": 5005,
+    "think": 834,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 99.1,
+    "ans": 5065,
+    "think": 778,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "lms",
+  "model": "zai-org/glm-4.7-flash",
+  "mode": "off",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 99.5,
+    "ans": 5194,
+    "think": 713,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 100.2,
+    "ans": 4042,
+    "think": 1722,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 98.1,
+    "ans": 4946,
+    "think": 854,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 96.3,
+    "ans": 4729,
+    "think": 1160,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "lms",
+  "model": "bytedance/seed-oss-36b",
+  "mode": "on",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 17.9,
+    "ans": 79,
+    "think": 297,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 112.9,
+    "ans": 146,
+    "think": 2248,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 227.5,
+    "ans": 199,
+    "think": 4329,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 30.1,
+    "ans": 117,
+    "think": 527,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "lms",
+  "model": "bytedance/seed-oss-36b",
+  "mode": "off",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 17.4,
+    "ans": 79,
+    "think": 297,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 123.2,
+    "ans": 148,
+    "think": 2385,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 36.6,
+    "ans": 223,
+    "think": 558,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 30.4,
+    "ans": 136,
+    "think": 527,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "lms",
+  "model": "allenai/olmo-3-32b-think",
+  "mode": "on",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 17.9,
+    "ans": 103,
+    "think": 329,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 149.6,
+    "ans": 95,
+    "think": 3405,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": false,
+    "why": "rubric-fail",
+    "elapsed": 254.7,
+    "ans": 62,
+    "think": 5724,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 45.6,
+    "ans": 157,
+    "think": 951,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "lms",
+  "model": "zai-org/glm-4.6v-flash",
+  "mode": "on",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 4.9,
+    "ans": 42,
+    "think": 286,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 23.7,
+    "ans": 170,
+    "think": 1545,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": false,
+    "why": "rubric-fail",
+    "elapsed": 82.1,
+    "ans": 0,
+    "think": 5795,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 3.3,
+    "ans": 98,
+    "think": 147,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "lms",
+  "model": "liquid/lfm2.5-1.2b",
+  "mode": "on",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 0.7,
+    "ans": 145,
+    "think": 0,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": false,
+    "why": "rubric-fail",
+    "elapsed": 0.3,
+    "ans": 91,
+    "think": 0,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 0.4,
+    "ans": 132,
+    "think": 0,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 0.4,
+    "ans": 129,
+    "think": 0,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "lms",
+  "model": "liquid/lfm2.5-1.2b",
+  "mode": "off",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 0.5,
+    "ans": 145,
+    "think": 0,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": false,
+    "why": "rubric-fail",
+    "elapsed": 0.3,
+    "ans": 91,
+    "think": 0,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 0.5,
+    "ans": 132,
+    "think": 0,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 0.4,
+    "ans": 129,
+    "think": 0,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "lms",
+  "model": "gemma4-26b-a4b-uncensored-hauhaucs-balanced",
+  "mode": "on",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 11.2,
+    "ans": 127,
+    "think": 785,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 19.3,
+    "ans": 138,
+    "think": 1542,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": false,
+    "why": "rubric-fail",
+    "elapsed": 17.2,
+    "ans": 138,
+    "think": 1343,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 14.4,
+    "ans": 161,
+    "think": 1075,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "ollama",
+  "model": "minicpm-v4.6:latest",
+  "mode": "on",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 18.0,
+    "ans": 125,
+    "think": 0,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": false,
+    "why": "rubric-fail",
+    "elapsed": 3.3,
+    "ans": 83,
+    "think": 0,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": false,
+    "why": "rubric-fail",
+    "elapsed": 1.1,
+    "ans": 94,
+    "think": 0,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": false,
+    "why": "rubric-fail",
+    "elapsed": 0.8,
+    "ans": 40,
+    "think": 0,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "ollama",
+  "model": "minicpm-v4.6:latest",
+  "mode": "off",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 0.6,
+    "ans": 165,
+    "think": 0,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": false,
+    "why": "rubric-fail",
+    "elapsed": 0.2,
+    "ans": 43,
+    "think": 0,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": false,
+    "why": "rubric-fail",
+    "elapsed": 0.2,
+    "ans": 66,
+    "think": 0,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": false,
+    "why": "rubric-fail",
+    "elapsed": 0.2,
+    "ans": 44,
+    "think": 0,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "ollama",
+  "model": "minicpm-v:latest",
+  "mode": "on",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 10.6,
+    "ans": 142,
+    "think": 0,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": false,
+    "why": "rubric-fail",
+    "elapsed": 2.3,
+    "ans": 208,
+    "think": 0,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 2.2,
+    "ans": 208,
+    "think": 0,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 2.1,
+    "ans": 210,
+    "think": 0,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "ollama",
+  "model": "minicpm-v:latest",
+  "mode": "off",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 1.4,
+    "ans": 145,
+    "think": 0,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": false,
+    "why": "rubric-fail",
+    "elapsed": 2.6,
+    "ans": 272,
+    "think": 0,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 2.5,
+    "ans": 253,
+    "think": 0,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 1.7,
+    "ans": 170,
+    "think": 0,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "ollama",
+  "model": "qwen2.5:0.5b",
+  "mode": "on",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 1.5,
+    "ans": 148,
+    "think": 0,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": false,
+    "why": "rubric-fail",
+    "elapsed": 0.2,
+    "ans": 82,
+    "think": 0,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 1.2,
+    "ans": 376,
+    "think": 0,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": false,
+    "why": "rubric-fail",
+    "elapsed": 0.4,
+    "ans": 158,
+    "think": 0,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "ollama",
+  "model": "qwen2.5:0.5b",
+  "mode": "off",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 0.5,
+    "ans": 164,
+    "think": 0,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": false,
+    "why": "rubric-fail",
+    "elapsed": 0.7,
+    "ans": 269,
+    "think": 0,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 1.6,
+    "ans": 646,
+    "think": 0,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": false,
+    "why": "rubric-fail",
+    "elapsed": 0.4,
+    "ans": 148,
+    "think": 0,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "omlx",
+  "model": "Ornith-1.5-35B-A3B-oQ4e-fp16-mtp",
+  "mode": "on",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 37.0,
+    "ans": 16,
+    "think": 32,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 19.5,
+    "ans": 28,
+    "think": 142,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 4.6,
+    "ans": 21,
+    "think": 18,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 2.9,
+    "ans": 15,
+    "think": 9,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "omlx",
+  "model": "Ornith-1.5-35B-A3B-oQ4e-fp16-mtp",
+  "mode": "off",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 2.0,
+    "ans": 14,
+    "think": 0,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 2.4,
+    "ans": 19,
+    "think": 0,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 3.3,
+    "ans": 26,
+    "think": 0,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 2.0,
+    "ans": 15,
+    "think": 0,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "omlx",
+  "model": "Ternary-Bonsai-27B-mlx-2bit",
+  "mode": "on",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 41.0,
+    "ans": 8,
+    "think": 197,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 85.1,
+    "ans": 30,
+    "think": 627,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 63.3,
+    "ans": 29,
+    "think": 451,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 32.3,
+    "ans": 23,
+    "think": 223,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "omlx",
+  "model": "Ternary-Bonsai-27B-mlx-2bit",
+  "mode": "off",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 4.4,
+    "ans": 29,
+    "think": 0,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 3.5,
+    "ans": 23,
+    "think": 0,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 6.2,
+    "ans": 42,
+    "think": 0,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 2.9,
+    "ans": 19,
+    "think": 0,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "omlx",
+  "model": "Devstral-Small-2-24B-Instruct-2512-bf16",
+  "mode": "on",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": false,
+    "why": "rubric-fail",
+    "elapsed": 69.7,
+    "ans": 25,
+    "think": 0,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 13.1,
+    "ans": 47,
+    "think": 0,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 27.3,
+    "ans": 101,
+    "think": 0,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 15.4,
+    "ans": 55,
+    "think": 0,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "omlx",
+  "model": "Devstral-Small-2-24B-Instruct-2512-bf16",
+  "mode": "off",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": false,
+    "why": "rubric-fail",
+    "elapsed": 6.8,
+    "ans": 24,
+    "think": 0,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 12.6,
+    "ans": 47,
+    "think": 0,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 21.3,
+    "ans": 79,
+    "think": 0,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 14.2,
+    "ans": 51,
+    "think": 0,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "omlx",
+  "model": "LFM2-24B-A2B-MLX-8bit",
+  "mode": "on",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 33.6,
+    "ans": 6,
+    "think": 0,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 1.3,
+    "ans": 11,
+    "think": 0,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 1.8,
+    "ans": 15,
+    "think": 0,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 1.3,
+    "ans": 11,
+    "think": 0,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "omlx",
+  "model": "LFM2-24B-A2B-MLX-8bit",
+  "mode": "off",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 1.0,
+    "ans": 8,
+    "think": 0,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 1.6,
+    "ans": 13,
+    "think": 0,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 1.8,
+    "ans": 15,
+    "think": 0,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 1.2,
+    "ans": 10,
+    "think": 0,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "omlx",
+  "model": "Qwen3.6-27B-Fable-Fusion-711-Uncensored-Heretic-NM-DAU-NEO-MAX-MTP-GGUF-dequantized",
+  "mode": "on",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 479.7,
+    "ans": 25,
+    "think": 335,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 1473.5,
+    "ans": 76,
+    "think": 1239,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 1066.0,
+    "ans": 95,
+    "think": 888,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 532.9,
+    "ans": 64,
+    "think": 423,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "omlx",
+  "model": "Qwen3.6-27B-Fable-Fusion-711-Uncensored-Heretic-NM-DAU-NEO-MAX-MTP-GGUF-dequantized",
+  "mode": "off",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 26.2,
+    "ans": 22,
+    "think": 0,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 90.1,
+    "ans": 82,
+    "think": 0,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 110.2,
+    "ans": 104,
+    "think": 0,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 83.5,
+    "ans": 73,
+    "think": 0,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "omlx",
+  "model": "Qwen3.8-27B-AWQ-5.0bpw",
+  "mode": "on",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 35.0,
+    "ans": 16,
+    "think": 52,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 188.9,
+    "ans": 35,
+    "think": 1235,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 113.0,
+    "ans": 57,
+    "think": 683,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 36.7,
+    "ans": 35,
+    "think": 204,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "omlx",
+  "model": "Qwen3.8-27B-AWQ-5.0bpw",
+  "mode": "off",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 3.4,
+    "ans": 17,
+    "think": 0,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 8.0,
+    "ans": 47,
+    "think": 0,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 8.5,
+    "ans": 48,
+    "think": 0,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 6.2,
+    "ans": 36,
+    "think": 0,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "omlx",
+  "model": "Qwen3.8-27B-MTPLX-Optimized-Quality",
+  "mode": "on",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 57.6,
+    "ans": 21,
+    "think": 85,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 230.3,
+    "ans": 51,
+    "think": 1205,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 58.3,
+    "ans": 56,
+    "think": 263,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 64.5,
+    "ans": 48,
+    "think": 306,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "omlx",
+  "model": "Seed-OSS-36B-Instruct-MLX-8bit",
+  "mode": "on",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 83.5,
+    "ans": 134,
+    "think": 0,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 115.7,
+    "ans": 502,
+    "think": 0,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 438.8,
+    "ans": 1858,
+    "think": 0,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 81.9,
+    "ans": 362,
+    "think": 0,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "omlx",
+  "model": "Seed-OSS-36B-Instruct-MLX-8bit",
+  "mode": "off",
+  "note": "",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 30.3,
+    "ans": 134,
+    "think": 0,
+    "replaced": false
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 154.7,
+    "ans": 683,
+    "think": 0,
+    "replaced": false
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 467.2,
+    "ans": 1999,
+    "think": 0,
+    "replaced": false
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 51.2,
+    "ans": 228,
+    "think": 0,
+    "replaced": false
+   }
+  }
+ },
+ {
+  "engine": "lms",
+  "model": "qwen3.8-27b",
+  "mode": "off",
+  "note": "v2 re-run: -c 32768 load, reasoning_effort:none honored",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 7.3,
+    "ans": 251,
+    "think": 0,
+    "replaced": true
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 5.7,
+    "ans": 157,
+    "think": 0,
+    "replaced": true
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 5.7,
+    "ans": 160,
+    "think": 0,
+    "replaced": true
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 6.9,
+    "ans": 187,
+    "think": 0,
+    "replaced": true
+   }
+  }
+ },
+ {
+  "engine": "lms",
+  "model": "qwen3.8-27b-obliterated",
+  "mode": "off",
+  "note": "v2 re-run: -c 32768 load, reasoning_effort:none honored",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 7.8,
+    "ans": 260,
+    "think": 0,
+    "replaced": true
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 6.1,
+    "ans": 177,
+    "think": 0,
+    "replaced": true
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 5.1,
+    "ans": 149,
+    "think": 0,
+    "replaced": true
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 6.5,
+    "ans": 176,
+    "think": 0,
+    "replaced": true
+   }
+  }
+ },
+ {
+  "engine": "lms",
+  "model": "qwen3.8-27b-heretic-abliterated-uncensored",
+  "mode": "off",
+  "note": "v2 re-run: -c 32768 load, reasoning_effort:none honored",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 7.5,
+    "ans": 280,
+    "think": 0,
+    "replaced": true
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 5.5,
+    "ans": 177,
+    "think": 0,
+    "replaced": true
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 4.9,
+    "ans": 156,
+    "think": 0,
+    "replaced": true
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 6.7,
+    "ans": 186,
+    "think": 0,
+    "replaced": true
+   }
+  }
+ },
+ {
+  "engine": "lms",
+  "model": "google/gemma-4-26b-a4b-qat",
+  "mode": "off",
+  "note": "v2 re-run: -c 32768 load, reasoning_effort:none honored",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": false,
+    "why": "ERR:",
+    "elapsed": 0,
+    "ans": 0,
+    "think": 0
+   },
+   "2_invoice": {
+    "ok": false,
+    "why": "ERR:",
+    "elapsed": 0,
+    "ans": 0,
+    "think": 0
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 1.3,
+    "ans": 121,
+    "think": 0,
+    "replaced": true
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 1.5,
+    "ans": 158,
+    "think": 0,
+    "replaced": true
+   }
+  }
+ },
+ {
+  "engine": "lms",
+  "model": "drk-coding-v1",
+  "mode": "off",
+  "note": "v2 re-run: -c 32768 load, reasoning_effort:none honored",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 2.3,
+    "ans": 221,
+    "think": 0,
+    "replaced": true
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 1.8,
+    "ans": 148,
+    "think": 0,
+    "replaced": true
+   },
+   "3_summary": {
+    "ok": false,
+    "why": "ERR:",
+    "elapsed": 0,
+    "ans": 0,
+    "think": 0
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 2.6,
+    "ans": 165,
+    "think": 0,
+    "replaced": true
+   }
+  }
+ },
+ {
+  "engine": "lms",
+  "model": "prism-ml/bonsai-27b",
+  "mode": "off",
+  "note": "v2 re-run: -c 32768 load, reasoning_effort:none honored",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 3.7,
+    "ans": 168,
+    "think": 0,
+    "replaced": true
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 6.2,
+    "ans": 291,
+    "think": 0,
+    "replaced": true
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 3.4,
+    "ans": 147,
+    "think": 0,
+    "replaced": true
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 3.5,
+    "ans": 165,
+    "think": 0,
+    "replaced": true
+   }
+  }
+ },
+ {
+  "engine": "lms",
+  "model": "allenai/olmo-3-32b-think",
+  "mode": "off",
+  "note": "v2 re-run: -c 32768 load, reasoning_effort:none honored",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": false,
+    "why": "ERR:",
+    "elapsed": 0,
+    "ans": 0,
+    "think": 0
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 134.9,
+    "ans": 103,
+    "think": 3290,
+    "replaced": true
+   },
+   "3_summary": {
+    "ok": false,
+    "why": "ERR:",
+    "elapsed": 0,
+    "ans": 0,
+    "think": 0
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 59.2,
+    "ans": 169,
+    "think": 1316,
+    "replaced": true
+   }
+  }
+ },
+ {
+  "engine": "lms",
+  "model": "zai-org/glm-4.6v-flash",
+  "mode": "off",
+  "note": "v2 re-run: -c 32768 load, reasoning_effort:none honored",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 8.5,
+    "ans": 143,
+    "think": 541,
+    "replaced": true
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 15.4,
+    "ans": 101,
+    "think": 1078,
+    "replaced": true
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 28.7,
+    "ans": 136,
+    "think": 2030,
+    "replaced": true
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 4.6,
+    "ans": 115,
+    "think": 238,
+    "replaced": true
+   }
+  }
+ },
+ {
+  "engine": "lms",
+  "model": "gemma4-26b-a4b-uncensored-hauhaucs-balanced",
+  "mode": "off",
+  "note": "v2 re-run: -c 32768 load, reasoning_effort:none honored",
+  "tasks": {
+   "1_grounded_qa": {
+    "ok": false,
+    "why": "ERR:",
+    "elapsed": 0,
+    "ans": 0,
+    "think": 0
+   },
+   "2_invoice": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 1.8,
+    "ans": 149,
+    "think": 0,
+    "replaced": true
+   },
+   "3_summary": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 1.6,
+    "ans": 129,
+    "think": 0,
+    "replaced": true
+   },
+   "4_email": {
+    "ok": true,
+    "why": "rubric-pass",
+    "elapsed": 2.0,
+    "ans": 162,
+    "think": 0,
+    "replaced": true
+   }
+  }
+ }
+]

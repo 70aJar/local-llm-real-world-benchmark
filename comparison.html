@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<style>
+:root { color-scheme: dark; }
+body { font-family: ui-sans-serif, system-ui, -apple-system, sans-serif; font-size: 12px; color: var(--foreground, #e5e7eb); }
+h3 { margin: 0 0 4px; font-size: 14px; }
+.sum { color: var(--muted-foreground, #9ca3af); font-size: 11px; margin-bottom: 6px; }
+.v2note { color: #fbbf24; font-size: 11px; margin-bottom: 10px; border: 1px dashed #fbbf2444; border-radius: 6px; padding: 6px 8px; }
+.toolbar { display: flex; gap: 12px; margin-bottom: 8px; flex-wrap: wrap; align-items: center; font-size: 11px; }
+.toolbar label { cursor: pointer; }
+.toolbar input { accent-color: var(--accent, #6366f1); }
+.wrap { overflow-x: auto; border: 1px solid var(--border, #374151); border-radius: 8px; max-height: 70vh; overflow-y: auto; }
+table { border-collapse: collapse; width: 100%; min-width: 900px; }
+th { position: sticky; top: 0; background: var(--card, #111827); color: var(--muted-foreground,#9ca3af); font-weight: 600; text-align: left; padding: 6px 8px; font-size: 10px; text-transform: uppercase; letter-spacing: .04em; border-bottom: 1px solid var(--border,#374151); z-index: 2; }
+td { padding: 6px 8px; border-bottom: 1px solid color-mix(in srgb, var(--border,#374151) 50%, transparent); vertical-align: top; }
+tr:hover td { background: color-mix(in srgb, var(--accent,#6366f1) 8%, transparent); }
+td.m { min-width: 240px; }
+.eng { display: inline-block; font-size: 9px; padding: 1px 6px; border-radius: 8px; margin-bottom: 2px; font-weight: 600; letter-spacing: .05em; }
+.eng-omlx { background: #7c3aed22; color: #a78bfa; }
+.eng-lms  { background: #0ea5e922; color: #38bdf8; }
+.eng-ollama { background: #f59e0b22; color: #fbbf24; }
+.model { font-size: 11px; word-break: break-all; }
+.mode { font-weight: 600; }
+.mode.on { color: #f472b6; }
+.mode.off { color: #34d399; }
+td.score { font-weight: 700; font-size: 13px; }
+.s4 { color: #34d399; } .s3 { color: #fbbf24; } .s2 { color: #fb923c; } .s0 { color: #f87171; }
+td.ok { color: #34d399; }
+td.warn { color: #fbbf24; }
+td.err { color: #f87171; }
+.sub { display: block; font-size: 9px; color: var(--muted-foreground,#9ca3af); font-weight: 400; }
+.ann { display: inline-block; font-size: 8px; padding: 0 4px; border-radius: 6px; margin-left: 4px; background: #fbbf2422; color: #fbbf24; }
+td.num, td.tps { text-align: right; font-variant-numeric: tabular-nums; }
+td.tps { font-weight: 700; color: var(--accent,#818cf8); }
+.counts { margin-top: 8px; font-size: 11px; color: var(--muted-foreground,#9ca3af); }
+</style></head><body>
+<h3>Local LLM Real-World Task Marathon — public edition (74 model-modes × 4 tasks)</h3>
+<div class="sum">One engine at a time, standalone, chat moved to cloud. oMLX thinking-off = enable_thinking:false · LM Studio = reasoning_effort:none (models loaded -c 32768 where honored). Task cells: <span style="color:#34d399">green</span>=PASS <span style="color:#fbbf24">amber</span>=partial / passes at higher budget <span style="color:#f87171">red</span>=FAIL. <code>s</code>=seconds · <code>a</code>=answer toks · <code>t</code>=thinking toks.</div>
+<div class="v2note"><b>v2 correction notice:</b> an initial harness bug (262K default ctx ignored the reasoning-off knob) produced false "empty answer" failures and inflated timings for a subset of models. Those rows were re-run with models loaded at 32K ctx and are marked <b>v2</b>; cells that only pass at a higher token budget carry a <b>passed@tok</b> badge. See README for full methodology.</div>
+<div class="toolbar">
+ <label><input type="checkbox" data-f="omlx" checked> oMLX</label>
+ <label><input type="checkbox" data-f="lms" checked> LM Studio</label>
+ <label><input type="checkbox" data-f="ollama" checked> Ollama</label>
+ <span style="margin-left:8px"></span>
+ <label><input type="radio" name="m" value="all" checked> all modes</label>
+ <label><input type="radio" name="m" value="on"> thinking ON</label>
+ <label><input type="radio" name="m" value="off"> thinking OFF</label>
+ <span style="margin-left:auto" class="counts" id="counts"></span>
+</div>
+<div class="wrap"><table id="t">
+<thead><tr>
+<th>Model</th><th>Mode</th><th>Score</th>
+<th title="Grounded Q&A">QA</th><th title="Invoice">INV</th><th title="Summary">SUM</th><th title="Email">EML</th>
+<th>Total time</th><th>Ans toks</th><th>Think toks</th><th>tok/s</th>
+</tr></thead>
+<tbody>
+<tr data-engine="lms" data-mode="on" data-score="4">
+<td class="m"><span class="eng eng-lms">lms</span><div class="model">superqwen-agentworld-35b-a3b-abliterated</div></td>
+<td class="mode on">on</td>
+<td class="score s4">4/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">2.1s · 138a</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">2.1s · 178a</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">2.7s · 227a</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">1.7s · 133a</span></td>
+<td class="num">8.6s</td>
+<td class="num">676</td>
+<td class="num">0</td>
+<td class="num tps">78.6</td>
+</tr><tr data-engine="lms" data-mode="off" data-score="4">
+<td class="m"><span class="eng eng-lms">lms</span><div class="model">superqwen-agentworld-35b-a3b-abliterated</div></td>
+<td class="mode off">off</td>
+<td class="score s4">4/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">1.6s · 120a</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">2.1s · 166a</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">2.4s · 192a</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">1.8s · 143a</span></td>
+<td class="num">7.9s</td>
+<td class="num">621</td>
+<td class="num">0</td>
+<td class="num tps">78.6</td>
+</tr><tr data-engine="lms" data-mode="off" data-score="4">
+<td class="m"><span class="eng eng-lms">lms</span><div class="model">poolside/laguna-s-2.1</div></td>
+<td class="mode off">off</td>
+<td class="score s4">4/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">2s · 130a</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">2.7s · 170a</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">4.1s · 263a</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">3s · 192a</span></td>
+<td class="num">11.8s</td>
+<td class="num">755</td>
+<td class="num">0</td>
+<td class="num tps">64.0</td>
+</tr><tr data-engine="lms" data-mode="on" data-score="4">
+<td class="m"><span class="eng eng-lms">lms</span><div class="model">poolside/laguna-s-2.1</div></td>
+<td class="mode on">on</td>
+<td class="score s4">4/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">3s · 130a</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">2.9s · 182a</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">3.8s · 229a</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">3.2s · 189a</span></td>
+<td class="num">12.9s</td>
+<td class="num">730</td>
+<td class="num">0</td>
+<td class="num tps">56.6</td>
+</tr><tr data-engine="lms" data-mode="on" data-score="4">
+<td class="m"><span class="eng eng-lms">lms</span><div class="model">zai-org/glm-4.7-flash</div></td>
+<td class="mode on">on</td>
+<td class="score s4">4/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">100.6s · 5139a · 764t</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">97.4s · 4668a · 1022t</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">96.7s · 5005a · 834t</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">99.1s · 5065a · 778t</span></td>
+<td class="num">393.8s</td>
+<td class="num">19877</td>
+<td class="num">3398</td>
+<td class="num tps">50.5</td>
+</tr><tr data-engine="lms" data-mode="off" data-score="4">
+<td class="m"><span class="eng eng-lms">lms</span><div class="model">zai-org/glm-4.7-flash</div></td>
+<td class="mode off">off</td>
+<td class="score s4">4/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">99.5s · 5194a · 713t</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">100.2s · 4042a · 1722t</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">98.1s · 4946a · 854t</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">96.3s · 4729a · 1160t</span></td>
+<td class="num">394.1s</td>
+<td class="num">18911</td>
+<td class="num">4449</td>
+<td class="num tps">48.0</td>
+</tr><tr data-engine="lms" data-mode="off" data-score="4">
+<td class="m"><span class="eng eng-lms">lms</span><div class="model">prism-ml/bonsai-27b</div></td>
+<td class="mode off">off</td>
+<td class="score s4">4/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">3.7s · 168a</span><span class="ann">v2</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">6.2s · 291a</span><span class="ann">v2</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">3.4s · 147a</span><span class="ann">v2</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">3.5s · 165a</span><span class="ann">v2</span></td>
+<td class="num">16.8s</td>
+<td class="num">771</td>
+<td class="num">0</td>
+<td class="num tps">45.9</td>
+</tr><tr data-engine="lms" data-mode="off" data-score="4">
+<td class="m"><span class="eng eng-lms">lms</span><div class="model">huizimao-gpt-oss-20b-uncensored-hi-mlx</div></td>
+<td class="mode off">off</td>
+<td class="score s4">4/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">5.6s · 179a</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">5.3s · 163a</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">4.1s · 238a</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">4s · 134a</span></td>
+<td class="num">19s</td>
+<td class="num">714</td>
+<td class="num">0</td>
+<td class="num tps">37.6</td>
+</tr><tr data-engine="lms" data-mode="off" data-score="4">
+<td class="m"><span class="eng eng-lms">lms</span><div class="model">magistral-small-2509-mlx</div></td>
+<td class="mode off">off</td>
+<td class="score s4">4/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">4.3s · 154a</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">4.9s · 169a</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">6.4s · 223a</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">4.5s · 161a</span></td>
+<td class="num">20.1s</td>
+<td class="num">707</td>
+<td class="num">0</td>
+<td class="num tps">35.2</td>
+</tr><tr data-engine="lms" data-mode="on" data-score="4">
+<td class="m"><span class="eng eng-lms">lms</span><div class="model">magistral-small-2509-mlx</div></td>
+<td class="mode on">on</td>
+<td class="score s4">4/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">4.5s · 154a</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">4.2s · 140a</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">6s · 197a</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">4.3s · 150a</span></td>
+<td class="num">19s</td>
+<td class="num">641</td>
+<td class="num">0</td>
+<td class="num tps">33.7</td>
+</tr><tr data-engine="lms" data-mode="off" data-score="4">
+<td class="m"><span class="eng eng-lms">lms</span><div class="model">qwen3.8-27b-heretic-abliterated-uncensored</div></td>
+<td class="mode off">off</td>
+<td class="score s4">4/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">7.5s · 280a</span><span class="ann">v2</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">5.5s · 177a</span><span class="ann">v2</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">4.9s · 156a</span><span class="ann">v2</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">6.7s · 186a</span><span class="ann">v2</span></td>
+<td class="num">24.6s</td>
+<td class="num">799</td>
+<td class="num">0</td>
+<td class="num tps">32.5</td>
+</tr><tr data-engine="lms" data-mode="off" data-score="4">
+<td class="m"><span class="eng eng-lms">lms</span><div class="model">qwen3.8-27b-obliterated</div></td>
+<td class="mode off">off</td>
+<td class="score s4">4/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">7.8s · 260a</span><span class="ann">v2</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">6.1s · 177a</span><span class="ann">v2</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">5.1s · 149a</span><span class="ann">v2</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">6.5s · 176a</span><span class="ann">v2</span></td>
+<td class="num">25.5s</td>
+<td class="num">762</td>
+<td class="num">0</td>
+<td class="num tps">29.9</td>
+</tr><tr data-engine="lms" data-mode="off" data-score="4">
+<td class="m"><span class="eng eng-lms">lms</span><div class="model">qwen3.8-27b</div></td>
+<td class="mode off">off</td>
+<td class="score s4">4/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">7.3s · 251a</span><span class="ann">v2</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">5.7s · 157a</span><span class="ann">v2</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">5.7s · 160a</span><span class="ann">v2</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">6.9s · 187a</span><span class="ann">v2</span></td>
+<td class="num">25.6s</td>
+<td class="num">755</td>
+<td class="num">0</td>
+<td class="num tps">29.5</td>
+</tr><tr data-engine="lms" data-mode="on" data-score="4">
+<td class="m"><span class="eng eng-lms">lms</span><div class="model">ornith-1.5-35b-a3b-uncensored-mlx</div></td>
+<td class="mode on">on</td>
+<td class="score s4">4/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">7.4s · 193a · 402t</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">15.1s · 192a · 1057t</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">5.5s · 215a · 223t</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">2.6s · 147a · 70t</span></td>
+<td class="num">30.6s</td>
+<td class="num">747</td>
+<td class="num">1752</td>
+<td class="num tps">24.4</td>
+</tr><tr data-engine="lms" data-mode="off" data-score="4">
+<td class="m"><span class="eng eng-lms">lms</span><div class="model">mistralai/devstral-small-2507</div></td>
+<td class="mode off">off</td>
+<td class="score s4">4/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">7.3s · 154a</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">8.6s · 174a</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">10.6s · 209a</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">8.6s · 179a</span></td>
+<td class="num">35.1s</td>
+<td class="num">716</td>
+<td class="num">0</td>
+<td class="num tps">20.4</td>
+</tr><tr data-engine="lms" data-mode="off" data-score="4">
+<td class="m"><span class="eng eng-lms">lms</span><div class="model">zai-org/glm-4.6v-flash</div></td>
+<td class="mode off">off</td>
+<td class="score s4">4/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">8.5s · 143a · 541t</span><span class="ann">v2</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">15.4s · 101a · 1078t</span><span class="ann">v2</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">28.7s · 136a · 2030t</span><span class="ann">v2</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">4.6s · 115a · 238t</span><span class="ann">v2</span></td>
+<td class="num">57.2s</td>
+<td class="num">495</td>
+<td class="num">3887</td>
+<td class="num tps">8.7</td>
+</tr><tr data-engine="omlx" data-mode="off" data-score="4">
+<td class="m"><span class="eng eng-omlx">omlx</span><div class="model">LFM2-24B-A2B-MLX-8bit</div></td>
+<td class="mode off">off</td>
+<td class="score s4">4/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">1s · 8a</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">1.6s · 13a</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">1.8s · 15a</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">1.2s · 10a</span></td>
+<td class="num">5.6s</td>
+<td class="num">46</td>
+<td class="num">0</td>
+<td class="num tps">8.2</td>
+</tr><tr data-engine="omlx" data-mode="off" data-score="4">
+<td class="m"><span class="eng eng-omlx">omlx</span><div class="model">Ornith-1.5-35B-A3B-oQ4e-fp16-mtp</div></td>
+<td class="mode off">off</td>
+<td class="score s4">4/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">2s · 14a</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">2.4s · 19a</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">3.3s · 26a</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">2s · 15a</span></td>
+<td class="num">9.7s</td>
+<td class="num">74</td>
+<td class="num">0</td>
+<td class="num tps">7.6</td>
+</tr><tr data-engine="lms" data-mode="on" data-score="4">
+<td class="m"><span class="eng eng-lms">lms</span><div class="model">google/gemma-4-26b-a4b-qat</div></td>
+<td class="mode on">on</td>
+<td class="score s4">4/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">5.7s · 44a · 512t</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">33.3s · 124a · 3215t</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">20.4s · 140a · 1943t</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">6.8s · 159a · 573t</span></td>
+<td class="num">66.2s</td>
+<td class="num">467</td>
+<td class="num">6243</td>
+<td class="num tps">7.1</td>
+</tr><tr data-engine="omlx" data-mode="off" data-score="4">
+<td class="m"><span class="eng eng-omlx">omlx</span><div class="model">Ternary-Bonsai-27B-mlx-2bit</div></td>
+<td class="mode off">off</td>
+<td class="score s4">4/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">4.4s · 29a</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">3.5s · 23a</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">6.2s · 42a</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">2.9s · 19a</span></td>
+<td class="num">17s</td>
+<td class="num">113</td>
+<td class="num">0</td>
+<td class="num tps">6.6</td>
+</tr><tr data-engine="omlx" data-mode="off" data-score="4">
+<td class="m"><span class="eng eng-omlx">omlx</span><div class="model">grug-27b-oQ8e-fp16</div></td>
+<td class="mode off">off</td>
+<td class="score s4">4/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">3.4s · 17a</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">11s · 64a</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">8.8s · 50a</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">7.4s · 42a</span></td>
+<td class="num">30.6s</td>
+<td class="num">173</td>
+<td class="num">0</td>
+<td class="num tps">5.7</td>
+</tr><tr data-engine="omlx" data-mode="off" data-score="4">
+<td class="m"><span class="eng eng-omlx">omlx</span><div class="model">Qwen3.8-27B-AWQ-5.0bpw</div></td>
+<td class="mode off">off</td>
+<td class="score s4">4/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">3.4s · 17a</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">8s · 47a</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">8.5s · 48a</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">6.2s · 36a</span></td>
+<td class="num">26.1s</td>
+<td class="num">148</td>
+<td class="num">0</td>
+<td class="num tps">5.7</td>
+</tr><tr data-engine="omlx" data-mode="off" data-score="4">
+<td class="m"><span class="eng eng-omlx">omlx</span><div class="model">Seed-OSS-36B-Instruct-MLX-8bit</div></td>
+<td class="mode off">off</td>
+<td class="score s4">4/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">30.3s · 134a</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">154.7s · 683a</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">467.2s · 1999a</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">51.2s · 228a</span></td>
+<td class="num">703.4s</td>
+<td class="num">3044</td>
+<td class="num">0</td>
+<td class="num tps">4.3</td>
+</tr><tr data-engine="omlx" data-mode="on" data-score="4">
+<td class="m"><span class="eng eng-omlx">omlx</span><div class="model">Seed-OSS-36B-Instruct-MLX-8bit</div></td>
+<td class="mode on">on</td>
+<td class="score s4">4/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">83.5s · 134a</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">115.7s · 502a</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">438.8s · 1858a</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">81.9s · 362a</span></td>
+<td class="num">719.9s</td>
+<td class="num">2856</td>
+<td class="num">0</td>
+<td class="num tps">4.0</td>
+</tr><tr data-engine="lms" data-mode="off" data-score="4">
+<td class="m"><span class="eng eng-lms">lms</span><div class="model">bytedance/seed-oss-36b</div></td>
+<td class="mode off">off</td>
+<td class="score s4">4/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">17.4s · 79a · 297t</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">123.2s · 148a · 2385t</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">36.6s · 223a · 558t</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">30.4s · 136a · 527t</span></td>
+<td class="num">207.6s</td>
+<td class="num">586</td>
+<td class="num">3767</td>
+<td class="num tps">2.8</td>
+</tr><tr data-engine="lms" data-mode="on" data-score="4">
+<td class="m"><span class="eng eng-lms">lms</span><div class="model">prism-ml/bonsai-27b</div></td>
+<td class="mode on">on</td>
+<td class="score s4">4/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">35.4s · 66a · 1460t</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">82s · 182a · 3321t</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">62.3s · 171a · 2316t</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">34.9s · 145a · 1255t</span></td>
+<td class="num">214.6s</td>
+<td class="num">564</td>
+<td class="num">8352</td>
+<td class="num tps">2.6</td>
+</tr><tr data-engine="omlx" data-mode="on" data-score="4">
+<td class="m"><span class="eng eng-omlx">omlx</span><div class="model">grug-27b-oQ8e-fp16</div></td>
+<td class="mode on">on</td>
+<td class="score s4">4/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">47.6s · 18a · 16t</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">15.1s · 57a · 32t</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">14.2s · 73a · 8t</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">10s · 45a · 13t</span></td>
+<td class="num">86.9s</td>
+<td class="num">193</td>
+<td class="num">69</td>
+<td class="num tps">2.2</td>
+</tr><tr data-engine="lms" data-mode="on" data-score="4">
+<td class="m"><span class="eng eng-lms">lms</span><div class="model">qwen3.8-27b</div></td>
+<td class="mode on">on</td>
+<td class="score s4">4/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">11.1s · 53a · 359t</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">177.3s · 140a · 4544t</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">31.5s · 160a · 794t</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">30.8s · 142a · 806t</span></td>
+<td class="num">250.7s</td>
+<td class="num">495</td>
+<td class="num">6503</td>
+<td class="num tps">2.0</td>
+</tr><tr data-engine="lms" data-mode="on" data-score="4">
+<td class="m"><span class="eng eng-lms">lms</span><div class="model">qwen3.8-27b-obliterated</div></td>
+<td class="mode on">on</td>
+<td class="score s4">4/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">11.9s · 48a · 281t</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">136.8s · 139a · 2842t</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">80.2s · 185a · 2056t</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">45.7s · 138a · 1153t</span></td>
+<td class="num">274.6s</td>
+<td class="num">510</td>
+<td class="num">6332</td>
+<td class="num tps">1.9</td>
+</tr><tr data-engine="lms" data-mode="on" data-score="4">
+<td class="m"><span class="eng eng-lms">lms</span><div class="model">bytedance/seed-oss-36b</div></td>
+<td class="mode on">on</td>
+<td class="score s4">4/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">17.9s · 79a · 297t</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">112.9s · 146a · 2248t</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">227.5s · 199a · 4329t</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">30.1s · 117a · 527t</span></td>
+<td class="num">388.4s</td>
+<td class="num">541</td>
+<td class="num">7401</td>
+<td class="num tps">1.4</td>
+</tr><tr data-engine="omlx" data-mode="on" data-score="4">
+<td class="m"><span class="eng eng-omlx">omlx</span><div class="model">Ornith-1.5-35B-A3B-oQ4e-fp16-mtp</div></td>
+<td class="mode on">on</td>
+<td class="score s4">4/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">37s · 16a · 32t</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">19.5s · 28a · 142t</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">4.6s · 21a · 18t</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">2.9s · 15a · 9t</span></td>
+<td class="num">64s</td>
+<td class="num">80</td>
+<td class="num">201</td>
+<td class="num tps">1.2</td>
+</tr><tr data-engine="omlx" data-mode="on" data-score="4">
+<td class="m"><span class="eng eng-omlx">omlx</span><div class="model">LFM2-24B-A2B-MLX-8bit</div></td>
+<td class="mode on">on</td>
+<td class="score s4">4/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">33.6s · 6a</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">1.3s · 11a</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">1.8s · 15a</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">1.3s · 11a</span></td>
+<td class="num">38s</td>
+<td class="num">43</td>
+<td class="num">0</td>
+<td class="num tps">1.1</td>
+</tr><tr data-engine="omlx" data-mode="off" data-score="4">
+<td class="m"><span class="eng eng-omlx">omlx</span><div class="model">Qwen3.6-27B-Fable-Fusion-711-Uncensored-Heretic-NM-DAU-NEO-MAX-MTP-GGUF-dequantized</div></td>
+<td class="mode off">off</td>
+<td class="score s4">4/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">26.2s · 22a</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">90.1s · 82a</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">110.2s · 104a</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">83.5s · 73a</span></td>
+<td class="num">310s</td>
+<td class="num">281</td>
+<td class="num">0</td>
+<td class="num tps">0.9</td>
+</tr><tr data-engine="omlx" data-mode="off" data-score="4">
+<td class="m"><span class="eng eng-omlx">omlx</span><div class="model">Muse-Glimmer-30B-4bit</div></td>
+<td class="mode off">off</td>
+<td class="score s4">4/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">58.4s · 41a · 138t</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">108.2s · 36a · 587t</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">63.1s · 51a · 297t</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">41s · 24a · 192t</span></td>
+<td class="num">270.7s</td>
+<td class="num">152</td>
+<td class="num">1214</td>
+<td class="num tps">0.6</td>
+</tr><tr data-engine="omlx" data-mode="on" data-score="4">
+<td class="m"><span class="eng eng-omlx">omlx</span><div class="model">Muse-Glimmer-30B-4bit</div></td>
+<td class="mode on">on</td>
+<td class="score s4">4/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">63.9s · 42a · 157t</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">129.6s · 34a · 699t</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">72.8s · 53a · 356t</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">31.4s · 27a · 150t</span></td>
+<td class="num">297.7s</td>
+<td class="num">156</td>
+<td class="num">1362</td>
+<td class="num tps">0.5</td>
+</tr><tr data-engine="omlx" data-mode="on" data-score="4">
+<td class="m"><span class="eng eng-omlx">omlx</span><div class="model">Ternary-Bonsai-27B-mlx-2bit</div></td>
+<td class="mode on">on</td>
+<td class="score s4">4/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">41s · 8a · 197t</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">85.1s · 30a · 627t</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">63.3s · 29a · 451t</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">32.3s · 23a · 223t</span></td>
+<td class="num">221.7s</td>
+<td class="num">90</td>
+<td class="num">1498</td>
+<td class="num tps">0.4</td>
+</tr><tr data-engine="omlx" data-mode="on" data-score="4">
+<td class="m"><span class="eng eng-omlx">omlx</span><div class="model">Qwen3.8-27B-AWQ-5.0bpw</div></td>
+<td class="mode on">on</td>
+<td class="score s4">4/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">35s · 16a · 52t</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">188.9s · 35a · 1235t</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">113s · 57a · 683t</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">36.7s · 35a · 204t</span></td>
+<td class="num">373.6s</td>
+<td class="num">143</td>
+<td class="num">2174</td>
+<td class="num tps">0.4</td>
+</tr><tr data-engine="omlx" data-mode="on" data-score="4">
+<td class="m"><span class="eng eng-omlx">omlx</span><div class="model">Qwen3.8-27B-MTPLX-Optimized-Quality</div></td>
+<td class="mode on">on</td>
+<td class="score s4">4/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">57.6s · 21a · 85t</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">230.3s · 51a · 1205t</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">58.3s · 56a · 263t</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">64.5s · 48a · 306t</span></td>
+<td class="num">410.7s</td>
+<td class="num">176</td>
+<td class="num">1859</td>
+<td class="num tps">0.4</td>
+</tr><tr data-engine="omlx" data-mode="on" data-score="4">
+<td class="m"><span class="eng eng-omlx">omlx</span><div class="model">Qwen3.6-27B-Fable-Fusion-711-Uncensored-Heretic-NM-DAU-NEO-MAX-MTP-GGUF-dequantized</div></td>
+<td class="mode on">on</td>
+<td class="score s4">4/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">479.7s · 25a · 335t</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">1473.5s · 76a · 1239t</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">1066s · 95a · 888t</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">532.9s · 64a · 423t</span></td>
+<td class="num">3552.1s</td>
+<td class="num">260</td>
+<td class="num">2885</td>
+<td class="num tps">0.1</td>
+</tr><tr data-engine="lms" data-mode="on" data-score="3">
+<td class="m"><span class="eng eng-lms">lms</span><div class="model">liquid/lfm2.5-1.2b</div></td>
+<td class="mode on">on</td>
+<td class="score s3">3/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">0.7s · 145a</span></td><td class="err" title="Invoice (format+math) — FAIL (rubric-fail)">INV<span class="sub">0.3s · 91a</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">0.4s · 132a</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">0.4s · 129a</span></td>
+<td class="num">1.8s</td>
+<td class="num">497</td>
+<td class="num">0</td>
+<td class="num tps">∞</td>
+</tr><tr data-engine="lms" data-mode="off" data-score="3">
+<td class="m"><span class="eng eng-lms">lms</span><div class="model">liquid/lfm2.5-1.2b</div></td>
+<td class="mode off">off</td>
+<td class="score s3">3/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">0.5s · 145a</span></td><td class="err" title="Invoice (format+math) — FAIL (rubric-fail)">INV<span class="sub">0.3s · 91a</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">0.5s · 132a</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">0.4s · 129a</span></td>
+<td class="num">1.7s</td>
+<td class="num">497</td>
+<td class="num">0</td>
+<td class="num tps">∞</td>
+</tr><tr data-engine="ollama" data-mode="off" data-score="3">
+<td class="m"><span class="eng eng-ollama">ollama</span><div class="model">minicpm-v:latest</div></td>
+<td class="mode off">off</td>
+<td class="score s3">3/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">1.4s · 145a</span></td><td class="err" title="Invoice (format+math) — FAIL (rubric-fail)">INV<span class="sub">2.6s · 272a</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">2.5s · 253a</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">1.7s · 170a</span></td>
+<td class="num">8.2s</td>
+<td class="num">840</td>
+<td class="num">0</td>
+<td class="num tps">102.4</td>
+</tr><tr data-engine="lms" data-mode="off" data-score="3">
+<td class="m"><span class="eng eng-lms">lms</span><div class="model">gemma4-26b-a4b-uncensored-hauhaucs-balanced</div></td>
+<td class="mode off">off</td>
+<td class="score s3">3/4</td>
+<td class="err" title="Grounded Q&amp;A (hallucination check) — FAIL (ERR:)">QA<span class="sub">0s · 0a</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">1.8s · 149a</span><span class="ann">v2</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">1.6s · 129a</span><span class="ann">v2</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">2s · 162a</span><span class="ann">v2</span></td>
+<td class="num">5.4s</td>
+<td class="num">440</td>
+<td class="num">0</td>
+<td class="num tps">81.5</td>
+</tr><tr data-engine="lms" data-mode="off" data-score="3">
+<td class="m"><span class="eng eng-lms">lms</span><div class="model">drk-coding-v1</div></td>
+<td class="mode off">off</td>
+<td class="score s3">3/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">2.3s · 221a</span><span class="ann">v2</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">1.8s · 148a</span><span class="ann">v2</span></td><td class="err" title="Technical summary (5 bullets) — FAIL (ERR:)">SUM<span class="sub">0s · 0a</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">2.6s · 165a</span><span class="ann">v2</span></td>
+<td class="num">6.7s</td>
+<td class="num">534</td>
+<td class="num">0</td>
+<td class="num tps">79.7</td>
+</tr><tr data-engine="lms" data-mode="off" data-score="3">
+<td class="m"><span class="eng eng-lms">lms</span><div class="model">grug-35b-qat</div></td>
+<td class="mode off">off</td>
+<td class="score s3">3/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">1.5s · 65a · 62t</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">3.3s · 197a · 107t</span></td><td class="err" title="Technical summary (5 bullets) — FAIL (rubric-fail)">SUM<span class="sub">2.5s · 193a · 31t</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">1.9s · 118a · 50t</span></td>
+<td class="num">9.2s</td>
+<td class="num">573</td>
+<td class="num">250</td>
+<td class="num tps">62.3</td>
+</tr><tr data-engine="lms" data-mode="off" data-score="3">
+<td class="m"><span class="eng eng-lms">lms</span><div class="model">vibe-coding-claude-fable-5-mlx</div></td>
+<td class="mode off">off</td>
+<td class="score s3">3/4</td>
+<td class="err" title="Grounded Q&amp;A (hallucination check) — FAIL (rubric-fail)">QA<span class="sub">1.2s · 68a</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">4s · 232a</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">3.4s · 198a</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">2.6s · 151a</span></td>
+<td class="num">11.2s</td>
+<td class="num">649</td>
+<td class="num">0</td>
+<td class="num tps">57.9</td>
+</tr><tr data-engine="lms" data-mode="on" data-score="3">
+<td class="m"><span class="eng eng-lms">lms</span><div class="model">vibe-coding-claude-fable-5-mlx</div></td>
+<td class="mode on">on</td>
+<td class="score s3">3/4</td>
+<td class="err" title="Grounded Q&amp;A (hallucination check) — FAIL (rubric-fail)">QA<span class="sub">1.4s · 69a</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">3.7s · 219a</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">3.4s · 200a</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">2.6s · 152a</span></td>
+<td class="num">11.1s</td>
+<td class="num">640</td>
+<td class="num">0</td>
+<td class="num tps">57.7</td>
+</tr><tr data-engine="lms" data-mode="on" data-score="3">
+<td class="m"><span class="eng eng-lms">lms</span><div class="model">grug-35b-qat</div></td>
+<td class="mode on">on</td>
+<td class="score s3">3/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">1.7s · 64a · 63t</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">3.6s · 199a · 110t</span></td><td class="err" title="Technical summary (5 bullets) — FAIL (rubric-fail)">SUM<span class="sub">3s · 217a · 24t</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">2.1s · 116a · 46t</span></td>
+<td class="num">10.4s</td>
+<td class="num">596</td>
+<td class="num">243</td>
+<td class="num tps">57.3</td>
+</tr><tr data-engine="ollama" data-mode="on" data-score="3">
+<td class="m"><span class="eng eng-ollama">ollama</span><div class="model">minicpm-v:latest</div></td>
+<td class="mode on">on</td>
+<td class="score s3">3/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">10.6s · 142a</span></td><td class="err" title="Invoice (format+math) — FAIL (rubric-fail)">INV<span class="sub">2.3s · 208a</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">2.2s · 208a</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">2.1s · 210a</span></td>
+<td class="num">17.2s</td>
+<td class="num">768</td>
+<td class="num">0</td>
+<td class="num tps">44.7</td>
+</tr><tr data-engine="lms" data-mode="off" data-score="3">
+<td class="m"><span class="eng eng-lms">lms</span><div class="model">ornith-1.5-35b-a3b-uncensored-mlx</div></td>
+<td class="mode off">off</td>
+<td class="score s3">3/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">6s · 212a · 310t</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">10.2s · 203a · 686t</span></td><td class="err" title="Technical summary (5 bullets) — FAIL (rubric-fail)">SUM<span class="sub">3.9s · 184a · 158t</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">2.6s · 150a · 70t</span></td>
+<td class="num">22.7s</td>
+<td class="num">749</td>
+<td class="num">1224</td>
+<td class="num tps">33.0</td>
+</tr><tr data-engine="lms" data-mode="on" data-score="3">
+<td class="m"><span class="eng eng-lms">lms</span><div class="model">gpt-oss-safeguard-20b-mlx</div></td>
+<td class="mode on">on</td>
+<td class="score s3">3/4</td>
+<td class="err" title="Grounded Q&amp;A (hallucination check) — FAIL (rubric-fail)">QA<span class="sub">7.1s · 161a</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">7.4s · 193a</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">10.4s · 261a</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">2s · 144a</span></td>
+<td class="num">26.9s</td>
+<td class="num">759</td>
+<td class="num">0</td>
+<td class="num tps">28.2</td>
+</tr><tr data-engine="lms" data-mode="off" data-score="3">
+<td class="m"><span class="eng eng-lms">lms</span><div class="model">gpt-oss-safeguard-20b-mlx</div></td>
+<td class="mode off">off</td>
+<td class="score s3">3/4</td>
+<td class="err" title="Grounded Q&amp;A (hallucination check) — FAIL (rubric-fail)">QA<span class="sub">4.3s · 111a</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">8.4s · 175a</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">7.9s · 218a</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">2s · 131a</span></td>
+<td class="num">22.6s</td>
+<td class="num">635</td>
+<td class="num">0</td>
+<td class="num tps">28.1</td>
+</tr><tr data-engine="lms" data-mode="on" data-score="3">
+<td class="m"><span class="eng eng-lms">lms</span><div class="model">huizimao-gpt-oss-20b-uncensored-hi-mlx</div></td>
+<td class="mode on">on</td>
+<td class="score s3">3/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">5.3s · 101a</span></td><td class="err" title="Invoice (format+math) — FAIL (rubric-fail)">INV<span class="sub">6.8s · 134a</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">3.9s · 221a</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">7.5s · 118a</span></td>
+<td class="num">23.5s</td>
+<td class="num">574</td>
+<td class="num">0</td>
+<td class="num tps">24.4</td>
+</tr><tr data-engine="lms" data-mode="on" data-score="3">
+<td class="m"><span class="eng eng-lms">lms</span><div class="model">gemma4-26b-a4b-uncensored-hauhaucs-balanced</div></td>
+<td class="mode on">on</td>
+<td class="score s3">3/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">11.2s · 127a · 785t</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">19.3s · 138a · 1542t</span></td><td class="err" title="Technical summary (5 bullets) — FAIL (rubric-fail)">SUM<span class="sub">17.2s · 138a · 1343t</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">14.4s · 161a · 1075t</span></td>
+<td class="num">62.1s</td>
+<td class="num">564</td>
+<td class="num">4745</td>
+<td class="num tps">9.1</td>
+</tr><tr data-engine="omlx" data-mode="off" data-score="3">
+<td class="m"><span class="eng eng-omlx">omlx</span><div class="model">Devstral-Small-2-24B-Instruct-2512-bf16</div></td>
+<td class="mode off">off</td>
+<td class="score s3">3/4</td>
+<td class="err" title="Grounded Q&amp;A (hallucination check) — FAIL (rubric-fail)">QA<span class="sub">6.8s · 24a</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">12.6s · 47a</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">21.3s · 79a</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">14.2s · 51a</span></td>
+<td class="num">54.9s</td>
+<td class="num">201</td>
+<td class="num">0</td>
+<td class="num tps">3.7</td>
+</tr><tr data-engine="lms" data-mode="on" data-score="3">
+<td class="m"><span class="eng eng-lms">lms</span><div class="model">google/gemma-4-12b</div></td>
+<td class="mode on">on</td>
+<td class="score s3">3/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">26.2s · 135a · 769t</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">61.9s · 144a · 2034t</span></td><td class="err" title="Technical summary (5 bullets) — FAIL (rubric-fail)">SUM<span class="sub">91s · 166a · 2916t</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">23.6s · 155a · 630t</span></td>
+<td class="num">202.7s</td>
+<td class="num">600</td>
+<td class="num">6349</td>
+<td class="num tps">3.0</td>
+</tr><tr data-engine="lms" data-mode="off" data-score="3">
+<td class="m"><span class="eng eng-lms">lms</span><div class="model">google/gemma-4-12b</div></td>
+<td class="mode off">off</td>
+<td class="score s3">3/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">23.2s · 127a · 645t</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">45.3s · 138a · 1376t</span></td><td class="err" title="Technical summary (5 bullets) — FAIL (rubric-fail)">SUM<span class="sub">118s · 177a · 3629t</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">22.7s · 149a · 613t</span></td>
+<td class="num">209.2s</td>
+<td class="num">591</td>
+<td class="num">6263</td>
+<td class="num tps">2.8</td>
+</tr><tr data-engine="lms" data-mode="on" data-score="3">
+<td class="m"><span class="eng eng-lms">lms</span><div class="model">zai-org/glm-4.6v-flash</div></td>
+<td class="mode on">on</td>
+<td class="score s3">3/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">4.9s · 42a · 286t</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">23.7s · 170a · 1545t</span></td><td class="err" title="Technical summary (5 bullets) — FAIL (rubric-fail)">SUM<span class="sub">82.1s · 0a · 5795t</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">3.3s · 98a · 147t</span></td>
+<td class="num">114s</td>
+<td class="num">310</td>
+<td class="num">7773</td>
+<td class="num tps">2.7</td>
+</tr><tr data-engine="omlx" data-mode="off" data-score="3">
+<td class="m"><span class="eng eng-omlx">omlx</span><div class="model">Qwen3.8-27B-MTPLX-Optimized-Quality</div></td>
+<td class="mode off">off</td>
+<td class="score s3">3/4</td>
+<td class="err" title="Grounded Q&amp;A (hallucination check) — FAIL (ERR:&lt;urlopen error [Errno 61] Connection refused&gt;)">QA<span class="sub">0s · 0a</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">49.7s · 59a</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">13.5s · 70a</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">10s · 52a</span></td>
+<td class="num">73.2s</td>
+<td class="num">181</td>
+<td class="num">0</td>
+<td class="num tps">2.5</td>
+</tr><tr data-engine="omlx" data-mode="on" data-score="3">
+<td class="m"><span class="eng eng-omlx">omlx</span><div class="model">Devstral-Small-2-24B-Instruct-2512-bf16</div></td>
+<td class="mode on">on</td>
+<td class="score s3">3/4</td>
+<td class="err" title="Grounded Q&amp;A (hallucination check) — FAIL (rubric-fail)">QA<span class="sub">69.7s · 25a</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">13.1s · 47a</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">27.3s · 101a</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">15.4s · 55a</span></td>
+<td class="num">125.5s</td>
+<td class="num">228</td>
+<td class="num">0</td>
+<td class="num tps">1.8</td>
+</tr><tr data-engine="omlx" data-mode="on" data-score="3">
+<td class="m"><span class="eng eng-omlx">omlx</span><div class="model">gemma-4-12b-coder-fable5-composer2.5-4bit</div></td>
+<td class="mode on">on</td>
+<td class="score s3">3/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">16.2s · 6a · 20t</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">9.1s · 12a · 54t</span></td><td class="err" title="Technical summary (5 bullets) — FAIL (rubric-fail)">SUM<span class="sub">13.3s · 23a · 79t</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">13s · 22a · 81t</span></td>
+<td class="num">51.6s</td>
+<td class="num">63</td>
+<td class="num">234</td>
+<td class="num tps">1.2</td>
+</tr><tr data-engine="lms" data-mode="on" data-score="3">
+<td class="m"><span class="eng eng-lms">lms</span><div class="model">qwen3.8-27b-heretic-abliterated-uncensored</div></td>
+<td class="mode on">on</td>
+<td class="score s3">3/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">14.7s · 53a · 375t</span></td><td class="warn" title="Invoice (format+math) — FAIL (passes at max_tokens=6000)">INV<span class="sub">257.1s · 0a · 5966t</span><span class="ann">passed@tok</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">72s · 192a · 1862t</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">43.3s · 145a · 1144t</span></td>
+<td class="num">387.1s</td>
+<td class="num">390</td>
+<td class="num">9347</td>
+<td class="num tps">1.0</td>
+</tr><tr data-engine="lms" data-mode="on" data-score="3">
+<td class="m"><span class="eng eng-lms">lms</span><div class="model">allenai/olmo-3-32b-think</div></td>
+<td class="mode on">on</td>
+<td class="score s3">3/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">17.9s · 103a · 329t</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">149.6s · 95a · 3405t</span></td><td class="err" title="Technical summary (5 bullets) — FAIL (rubric-fail)">SUM<span class="sub">254.7s · 62a · 5724t</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">45.6s · 157a · 951t</span></td>
+<td class="num">467.8s</td>
+<td class="num">417</td>
+<td class="num">10409</td>
+<td class="num tps">0.9</td>
+</tr><tr data-engine="ollama" data-mode="off" data-score="2">
+<td class="m"><span class="eng eng-ollama">ollama</span><div class="model">qwen2.5:0.5b</div></td>
+<td class="mode off">off</td>
+<td class="score s2">2/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">0.5s · 164a</span></td><td class="err" title="Invoice (format+math) — FAIL (rubric-fail)">INV<span class="sub">0.7s · 269a</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">1.6s · 646a</span></td><td class="err" title="Client email reply — FAIL (rubric-fail)">EML<span class="sub">0.4s · 148a</span></td>
+<td class="num">3.2s</td>
+<td class="num">1227</td>
+<td class="num">0</td>
+<td class="num tps">383.4</td>
+</tr><tr data-engine="ollama" data-mode="on" data-score="2">
+<td class="m"><span class="eng eng-ollama">ollama</span><div class="model">qwen2.5:0.5b</div></td>
+<td class="mode on">on</td>
+<td class="score s2">2/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">1.5s · 148a</span></td><td class="err" title="Invoice (format+math) — FAIL (rubric-fail)">INV<span class="sub">0.2s · 82a</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">1.2s · 376a</span></td><td class="err" title="Client email reply — FAIL (rubric-fail)">EML<span class="sub">0.4s · 158a</span></td>
+<td class="num">3.3s</td>
+<td class="num">764</td>
+<td class="num">0</td>
+<td class="num tps">231.5</td>
+</tr><tr data-engine="lms" data-mode="off" data-score="2">
+<td class="m"><span class="eng eng-lms">lms</span><div class="model">google/gemma-4-26b-a4b-qat</div></td>
+<td class="mode off">off</td>
+<td class="score s2">2/4</td>
+<td class="err" title="Grounded Q&amp;A (hallucination check) — FAIL (ERR:)">QA<span class="sub">0s · 0a</span></td><td class="err" title="Invoice (format+math) — FAIL (ERR:)">INV<span class="sub">0s · 0a</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">1.3s · 121a</span><span class="ann">v2</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">1.5s · 158a</span><span class="ann">v2</span></td>
+<td class="num">2.8s</td>
+<td class="num">279</td>
+<td class="num">0</td>
+<td class="num tps">99.6</td>
+</tr><tr data-engine="lms" data-mode="off" data-score="2">
+<td class="m"><span class="eng eng-lms">lms</span><div class="model">minicpm5-1b-claude-opus-fable5-v2-thinking-heretic</div></td>
+<td class="mode off">off</td>
+<td class="score s2">2/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">1.2s · 211a · 36t</span></td><td class="err" title="Invoice (format+math) — FAIL (rubric-fail)">INV<span class="sub">3.6s · 123a · 630t</span></td><td class="err" title="Technical summary (5 bullets) — FAIL (rubric-fail)">SUM<span class="sub">2.1s · 119a · 296t</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">1.2s · 77a · 161t</span></td>
+<td class="num">8.1s</td>
+<td class="num">530</td>
+<td class="num">1123</td>
+<td class="num tps">65.4</td>
+</tr><tr data-engine="lms" data-mode="on" data-score="2">
+<td class="m"><span class="eng eng-lms">lms</span><div class="model">minicpm5-1b-claude-opus-fable5-v2-thinking-heretic</div></td>
+<td class="mode on">on</td>
+<td class="score s2">2/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">2.2s · 161a · 288t</span></td><td class="err" title="Invoice (format+math) — FAIL (rubric-fail)">INV<span class="sub">5.4s · 77a · 1014t</span></td><td class="err" title="Technical summary (5 bullets) — FAIL (rubric-fail)">SUM<span class="sub">2.3s · 118a · 336t</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">1.4s · 82a · 198t</span></td>
+<td class="num">11.3s</td>
+<td class="num">438</td>
+<td class="num">1836</td>
+<td class="num tps">38.8</td>
+</tr><tr data-engine="lms" data-mode="on" data-score="2">
+<td class="m"><span class="eng eng-lms">lms</span><div class="model">mistralai/devstral-small-2507</div></td>
+<td class="mode on">on</td>
+<td class="score s2">2/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">7.9s · 154a</span></td><td class="err" title="Invoice (format+math) — FAIL (rubric-fail)">INV<span class="sub">8.6s · 166a</span></td><td class="err" title="Technical summary (5 bullets) — FAIL (rubric-fail)">SUM<span class="sub">8s · 150a</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">8.9s · 182a</span></td>
+<td class="num">33.4s</td>
+<td class="num">652</td>
+<td class="num">0</td>
+<td class="num tps">19.5</td>
+</tr><tr data-engine="omlx" data-mode="off" data-score="2">
+<td class="m"><span class="eng eng-omlx">omlx</span><div class="model">gemma-4-12b-coder-fable5-composer2.5-4bit</div></td>
+<td class="mode off">off</td>
+<td class="score s2">2/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">5.4s · 18a</span></td><td class="err" title="Invoice (format+math) — FAIL (rubric-fail)">INV<span class="sub">2.7s · 19a</span></td><td class="err" title="Technical summary (5 bullets) — FAIL (rubric-fail)">SUM<span class="sub">2.2s · 15a</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">2.3s · 17a</span></td>
+<td class="num">12.6s</td>
+<td class="num">69</td>
+<td class="num">0</td>
+<td class="num tps">5.5</td>
+</tr><tr data-engine="lms" data-mode="off" data-score="2">
+<td class="m"><span class="eng eng-lms">lms</span><div class="model">allenai/olmo-3-32b-think</div></td>
+<td class="mode off">off</td>
+<td class="score s2">2/4</td>
+<td class="err" title="Grounded Q&amp;A (hallucination check) — FAIL (ERR:)">QA<span class="sub">0s · 0a</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">134.9s · 103a · 3290t</span><span class="ann">v2</span></td><td class="err" title="Technical summary (5 bullets) — FAIL (ERR:)">SUM<span class="sub">0s · 0a</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">59.2s · 169a · 1316t</span><span class="ann">v2</span></td>
+<td class="num">194.1s</td>
+<td class="num">272</td>
+<td class="num">4606</td>
+<td class="num tps">1.4</td>
+</tr><tr data-engine="lms" data-mode="on" data-score="2">
+<td class="m"><span class="eng eng-lms">lms</span><div class="model">drk-coding-v1</div></td>
+<td class="mode on">on</td>
+<td class="score s2">2/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">11.3s · 47a · 1072t</span></td><td class="warn" title="Invoice (format+math) — FAIL (passes at max_tokens=8000)">INV<span class="sub">80.4s · 0a · 6000t</span><span class="ann">passed@tok</span></td><td class="warn" title="Technical summary (5 bullets) — FAIL (passes at max_tokens=6000)">SUM<span class="sub">72.9s · 0a · 6000t</span><span class="ann">passed@tok</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">22.8s · 116a · 1626t</span></td>
+<td class="num">187.4s</td>
+<td class="num">163</td>
+<td class="num">14698</td>
+<td class="num tps">0.9</td>
+</tr><tr data-engine="ollama" data-mode="off" data-score="1">
+<td class="m"><span class="eng eng-ollama">ollama</span><div class="model">minicpm-v4.6:latest</div></td>
+<td class="mode off">off</td>
+<td class="score s0">1/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">0.6s · 165a</span></td><td class="err" title="Invoice (format+math) — FAIL (rubric-fail)">INV<span class="sub">0.2s · 43a</span></td><td class="err" title="Technical summary (5 bullets) — FAIL (rubric-fail)">SUM<span class="sub">0.2s · 66a</span></td><td class="err" title="Client email reply — FAIL (rubric-fail)">EML<span class="sub">0.2s · 44a</span></td>
+<td class="num">1.2s</td>
+<td class="num">318</td>
+<td class="num">0</td>
+<td class="num tps">∞</td>
+</tr><tr data-engine="ollama" data-mode="on" data-score="1">
+<td class="m"><span class="eng eng-ollama">ollama</span><div class="model">minicpm-v4.6:latest</div></td>
+<td class="mode on">on</td>
+<td class="score s0">1/4</td>
+<td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">18s · 125a</span></td><td class="err" title="Invoice (format+math) — FAIL (rubric-fail)">INV<span class="sub">3.3s · 83a</span></td><td class="err" title="Technical summary (5 bullets) — FAIL (rubric-fail)">SUM<span class="sub">1.1s · 94a</span></td><td class="err" title="Client email reply — FAIL (rubric-fail)">EML<span class="sub">0.8s · 40a</span></td>
+<td class="num">23.2s</td>
+<td class="num">342</td>
+<td class="num">0</td>
+<td class="num tps">14.7</td>
+</tr>
+</tbody></table></div>
+<script>
+const rows = [...document.querySelectorAll('tbody tr')];
+const count = () => {
+  const vis = rows.filter(r => r.style.display !== 'none').length;
+  const s4 = rows.filter(r => r.style.display !== 'none' && +r.dataset.score === 4).length;
+  document.getElementById('counts').textContent = `${vis} shown · ${s4} pass 4/4`;
+};
+const apply = () => {
+  const engs = [...document.querySelectorAll('input[data-f]')].filter(i=>i.checked).map(i=>i.dataset.f);
+  const mode = (document.querySelector('input[name=m]:checked')||{}).value || 'all';
+  rows.forEach(r => {
+    const e = engs.includes(r.dataset.engine);
+    const m = mode === 'all' || r.dataset.mode === mode;
+    r.style.display = (e && m) ? '' : 'none';
+  });
+  count();
+};
+document.querySelectorAll('input[data-f], input[name=m]').forEach(i => i.addEventListener('change', apply));
+apply();
+</script>
+</body></html>
