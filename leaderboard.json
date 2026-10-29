@@ -2954,5 +2954,85 @@
     "replaced": true
    }
   }
+ },
+ {
+  "engine": "llamacpp",
+  "mode": "off",
+  "model": "Groot-19B-A3B-Q4_K_M",
+  "note": "IRIS (Radeon 780M, Vulkan) \u2014 projector on CPU",
+  "tasks": {
+   "1_grounded_qa": {
+    "ans": 122,
+    "elapsed": 5.8,
+    "ok": true,
+    "replaced": false,
+    "think": 0,
+    "why": "rubric-pass"
+   },
+   "2_invoice": {
+    "ans": 184,
+    "elapsed": 7.5,
+    "ok": true,
+    "replaced": false,
+    "think": 0,
+    "why": "rubric-pass"
+   },
+   "3_summary": {
+    "ans": 158,
+    "elapsed": 6.6,
+    "ok": true,
+    "replaced": false,
+    "think": 0,
+    "why": "rubric-pass"
+   },
+   "4_email": {
+    "ans": 162,
+    "elapsed": 6.8,
+    "ok": true,
+    "replaced": false,
+    "think": 0,
+    "why": "rubric-pass"
+   }
+  }
+ },
+ {
+  "engine": "lmstudio",
+  "mode": "off",
+  "model": "nanbeige4.3-33B-Q4_K_M",
+  "note": "FRIDAY M5 Max, ctx 32768",
+  "tasks": {
+   "1_grounded_qa": {
+    "ans": 134,
+    "elapsed": 6.3,
+    "ok": true,
+    "replaced": false,
+    "think": 0,
+    "why": "rubric-pass"
+   },
+   "2_invoice": {
+    "ans": 375,
+    "elapsed": 16.7,
+    "ok": true,
+    "replaced": false,
+    "think": 0,
+    "why": "rubric-pass"
+   },
+   "3_summary": {
+    "ans": 170,
+    "elapsed": 8.1,
+    "ok": true,
+    "replaced": false,
+    "think": 0,
+    "why": "rubric-pass"
+   },
+   "4_email": {
+    "ans": 224,
+    "elapsed": 10.5,
+    "ok": true,
+    "replaced": false,
+    "think": 0,
+    "why": "rubric-pass"
+   }
+  }
  }
 ]

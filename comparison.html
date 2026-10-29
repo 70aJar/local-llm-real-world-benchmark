@@ -39,7 +39,7 @@ td.tps { font-weight: 700; color: var(--accent,#818cf8); }
 <div class="v2note"><b>v2 correction notice:</b> an initial harness bug (262K default ctx ignored the reasoning-off knob) produced false "empty answer" failures and inflated timings for a subset of models. Those rows were re-run with models loaded at 32K ctx and are marked <b>v2</b>; cells that only pass at a higher token budget carry a <b>passed@tok</b> badge. See README for full methodology.</div>
 <div class="toolbar">
  <label><input type="checkbox" data-f="omlx" checked> oMLX</label>
- <label><input type="checkbox" data-f="lms" checked> LM Studio</label>
+ <label><input type="checkbox" data-f="lms" checked> LM Studio</label>  <label><input type="checkbox" data-f="llamacpp" checked> llama.cpp</label>
  <label><input type="checkbox" data-f="ollama" checked> Ollama</label>
  <span style="margin-left:8px"></span>
  <label><input type="radio" name="m" value="all" checked> all modes</label>
@@ -721,6 +721,9 @@ td.tps { font-weight: 700; color: var(--accent,#818cf8); }
 <td class="num">0</td>
 <td class="num tps">14.7</td>
 </tr>
+
+  <tr data-engine="llamacpp" data-mode="off" data-score="4"><td class="m"><span class="eng eng-llamacpp">llamacpp</span><div class="model">Groot-19B-A3B-Q4_K_M</div></td><td class="mode off">off</td><td class="score s4">4/4</td><td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">5.8s · 122a</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">7.5s · 184a</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">6.6s · 158a</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">6.8s · 162a</span></td><td class="num">26.7s</td><td class="num">626</td><td class="num">0</td><td class="num tps">23.4</td></tr>
+  <tr data-engine="lms" data-mode="off" data-score="4"><td class="m"><span class="eng eng-lms">lms</span><div class="model">nanbeige4.3-33B-Q4_K_M</div></td><td class="mode off">off</td><td class="score s4">4/4</td><td class="ok" title="Grounded Q&amp;A (hallucination check) — PASS">QA<span class="sub">6.3s · 134a</span></td><td class="ok" title="Invoice (format+math) — PASS">INV<span class="sub">16.7s · 375a</span></td><td class="ok" title="Technical summary (5 bullets) — PASS">SUM<span class="sub">8.1s · 170a</span></td><td class="ok" title="Client email reply — PASS">EML<span class="sub">10.5s · 224a</span></td><td class="num">41.6s</td><td class="num">903</td><td class="num">0</td><td class="num tps">21.7</td></tr>
 </tbody></table></div>
 <script>
 const rows = [...document.querySelectorAll('tbody tr')];

@@ -1,0 +1,52 @@
+========================================================================
+TASK: 1_grounded_qa
+  passed=True elapsed=5.8s think=0 answer=122
+  answer head: 1. The exact fallback order is: Node-B (10.0.0.2:9134, model-m), then Node-C (10.0.0.3:9134, model-v), then Node-D (10.0.0.4:9134, model-g). 2. Node-C serves model-v on port 9134 (
+========================================================================
+TASK: 2_invoice
+  passed=True elapsed=7.5s think=0 answer=184
+  answer head: INV-2026-0147  Ceramic Decor Studio [logo]  ──────────────────────────────────── 42 units × ceramic wall panels MRP: Rs 4,500 each Subtotal: Rs 189,000.00 Trade discount (10%): − R
+========================================================================
+TASK: 3_summary
+  passed=True elapsed=6.6s think=0 answer=158
+  answer head: - Desktop app uses a Python backend calling a distilled text-to-video pipeline. - Key models: 43GB distilled bf16 video model, 43GB official distilled model, 24GB 4-bit 12B text en
+========================================================================
+TASK: 4_email
+  passed=True elapsed=6.8s think=0 answer=162
+  answer head: Subject: Re: Order #8812 – Panels & Chipped Piece  Dear [Customer Name],  Thank you for reaching out about order #8812. I'm sorry to hear about the delivery and the chipped panel—l
+========================================================================
+SCORE: 4/4
+[
+  {
+    "task": "1_grounded_qa",
+    "passed": true,
+    "answer": "1. The exact fallback order is: Node-B (10.0.0.2:9134, model-m), then Node-C (10.0.0.3:9134, model-v), then Node-D (10.0.0.4:9134, model-g).\n2. Node-C serves model-v on port 9134 (10.0.0.3:9134).\n3. If every fallback node is busy, the request falls through to the primary node with a warning.",
+    "thinking_tokens": 0,
+    "answer_tokens": 122,
+    "elapsed": 5.8
+  },
+  {
+    "task": "2_invoice",
+    "passed": true,
+    "answer": "INV-2026-0147\n\nCeramic Decor Studio\n[logo]\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n42 units \u00d7 ceramic wall panels\nMRP: Rs 4,500 each\nSubtotal: Rs 189,000.00\nTrade discount (10%): \u2212 Rs 18,900.00\nDiscounted subtotal: Rs 170,100.00\nHST (13%): Rs 22,113.00\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nTotal: Rs 192,213.00\n\nPayment: Bank Deposit\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nCeramic Decor Studio\n123 Market Street, Suite 4\nToronto, ON 100021\nhello@ceramicdecorstudio.com",
+    "thinking_tokens": 0,
+    "answer_tokens": 184,
+    "elapsed": 7.5
+  },
+  {
+    "task": "3_summary",
+    "passed": true,
+    "answer": "- Desktop app uses a Python backend calling a distilled text-to-video pipeline.\n- Key models: 43GB distilled bf16 video model, 43GB official distilled model, 24GB 4-bit 12B text encoder, and 349MB spatial upscaler x2.\n- Pipeline converts prompts to 256x384 video, then upscales to 512x768 MP4.\n- On Apple Silicon MPS, 193 frames (8s) take ~3 minutes cold, ~2m45s warm.\n- Issues: fp8 fails on MPS, is 3x slower than CUDA fp8, and prompts should stay under 150 words.",
+    "thinking_tokens": 0,
+    "answer_tokens": 158,
+    "elapsed": 6.6
+  },
+  {
+    "task": "4_email",
+    "passed": true,
+    "answer": "Subject: Re: Order #8812 \u2013 Panels & Chipped Piece\n\nDear [Customer Name],\n\nThank you for reaching out about order #8812. I'm sorry to hear about the delivery and the chipped panel\u2014let me help with both.\n\nRegarding the missing panels: could you please confirm whether your office's courier has a delivery confirmation or receiver signature? If the tracking shows delivered but nothing arrived, I'll escalate this to our logistics team right away.\n\nFor the chipped piece, please send me a photo today so I can inspect it. If confirmed, I'll arrange a replacement within 5 working days.\n\nThank you for your patience, and I look forward to resolving this for you.\n\nWarm regards,\n\n[Your Name]\nHome Decor Brand",
+    "thinking_tokens": 0,
+    "answer_tokens": 162,
+    "elapsed": 6.8
+  }
+]
